@@ -11,7 +11,11 @@
 |
 */
 
-Route::get('/', 'UserController@login')->name('user.login');
-/*
-Route::post('/user/login', 'UserController@login')->name('user.login');
-*/
+Route::group(['middleware' => 'guest'], function() {
+  Route::get('/', 'UserController@signin')->name('user.signin');
+  Route::post('/user/login', 'UserController@login')->name('user.login');
+});
+Route::group(['middleware' => 'auth'], function() {
+  Route::get('/micropost/index', 'MicropostController@index')->name('micropost.index');
+  Route::post('/user/logout', 'UserController@logout')->name('user.logout');
+});

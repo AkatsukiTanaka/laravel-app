@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
- <!-- CSRF Token -->
- <meta name="csrf-token" content="{{ csrf_token() }}">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
- <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'Laravel') }}</title>
 
- <!-- Scripts -->
- <script src="{{ asset('js/app.js') }}" defer></script>
+  <!-- Scripts -->
+  <script src="{{ asset('js/app.js') }}" defer></script>
 
- <!-- Fonts -->
- <link rel="dns-prefetch" href="//fonts.gstatic.com">
- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
- <!-- Styles -->
- <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <!-- Styles -->
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 <body>
  <div id="app">
@@ -47,7 +48,7 @@
              </li>
            @else
              <li class="nav-item">
-                 <a class="nav-link" href="">{{ __('ホーム') }}</a>
+                 <a class="nav-link" href="{{route('micropost.index')}}">{{ __('ホーム') }}</a>
              </li>
              <li class="nav-item">
                <a class="nav-link" href="">{{ __('ユーザ一覧') }}</a>
@@ -68,7 +69,7 @@
                    {{ __('ログアウト') }}
                  </a>
 
-                 <form id="logout-form" action="" method="POST" style="display: none;">
+                 <form id="logout-form" action="{{route('user.logout')}}" method="POST" style="display: none;">
                    @csrf
                  </form>
                </div>
