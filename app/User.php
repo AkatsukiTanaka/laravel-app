@@ -19,6 +19,15 @@ class User extends Authenticatable
     }
 
     /**
+     * ユーザ登録/更新
+     */
+    public function userSave($params)
+    {
+      $isRegist = $this->fill(params)->save();
+      return $isRegist;
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
