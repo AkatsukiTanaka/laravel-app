@@ -5,7 +5,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">{{ __('投稿一覧') }}</div>
+        <div class="card-header">{{ __('ユーザ一覧')}}</div>
         <div class="card-body">
           @if (count($errors) > 0)
           <div class="errors">
@@ -25,11 +25,21 @@
               </tr>
             </thead>
             <tbody>
-              @foreach ($microposts as $micropost)
+              @foreach ($users as $user)
                 <tr>
-                  <td>{{$micropost->user->name}}</td>
-                  <td>{!! nl2br(e($micropost->content)) !!}</td>
-                  <td>{{$micropost->created_at}}</td>
+                  <td>{{$user->id}}</td>
+                  <td>{{$user->name}}</td>
+                  <td>
+                    @if (Auth::user()->admin_fig)
+                      @if (Auth::user()->id != $user->id)
+                        <form name="delete_form" action="{{route('user.destroy', ['user' => $user->id])}}" method="post">
+                          @csrf
+                          @method('delete')
+                          <input type="submit" class="btn btn-danger" value="削除" onclick='return confirm("本当に削除してよろしいですか？");'>
+                        </form>
+                      @endif
+                    @endif
+                  </td>
                 </tr>
               @endforeach
             </tbody>

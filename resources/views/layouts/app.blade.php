@@ -41,7 +41,7 @@
            <!-- Authentication Links -->
            @guest
              <li class="nav-item">
-                 <a class="nav-link" href="{{route('user.login')}}">{{ __('ログイン') }}</a>
+                 <a class="nav-link" href="{{route('user.signin')}}">{{ __('ログイン') }}</a>
              </li>
              <li class="nav-item">
                  <a class="nav-link" href="{{route('user.create')}}">{{ __('新規登録') }}</a>
@@ -51,10 +51,10 @@
                  <a class="nav-link" href="{{route('micropost.index')}}">{{ __('ホーム') }}</a>
              </li>
              <li class="nav-item">
-               <a class="nav-link" href="">{{ __('ユーザ一覧') }}</a>
+               <a class="nav-link" href="{{route('user.index')}}">{{ __('ユーザ一覧') }}</a>
              </li>
              <li class="nav-item">
-               <a class="nav-link" href="">{{ __('投稿') }}</a>
+               <a class="nav-link" href="{{route('micropost.input')}}">{{ __('投稿') }}</a>
              </li>
              <li class="nav-item dropdown">
                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -62,7 +62,7 @@
                </a>
 
                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                 <a class="dropdown-item" href="">アカウント変更</a>
+                 <a class="dropdown-item" href="{{route('user.edit', ['user' => Auth::user()->id])}}">アカウント変更</a>
                  <a class="dropdown-item" href=""
                    onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">

@@ -23,8 +23,18 @@ class User extends Authenticatable
      */
     public function userSave($params)
     {
-      $isRegist = $this->fill(params)->save();
+      $isRegist = $this->fill($params)->save();
       return $isRegist;
+    }
+
+    protected static function boot()
+    {
+      parent::boot();
+      static::deleting(function($model) {
+        foreach ($model->microposts()->get() as $child) {
+          $child->delete();
+        }
+      });
     }
 
     /**

@@ -20,4 +20,6 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('/micropost/index', 'MicropostController@index')->name('micropost.index');
   Route::post('/user/logout', 'UserController@logout')->name('user.logout');
   Route::resource('user', 'UserController', ['only' => ['index', 'edit', 'update', 'destroy']]);
+  Route::get('/micropost/input', 'MicropostController@input')->name('micropost.input');
+  Route::post('/micropost/post', 'MicropostController@post')->name('micropost.post');
 });
